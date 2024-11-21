@@ -11,12 +11,10 @@ from bokeh.layouts import column, row
 from bokeh.models import TextInput, Button, DatePicker, MultiChoice
 
 def load_data(ticker1, ticker2, start, end):
-    # Download data
     df1 = yf.download(ticker1, start=start, end=end)
     df2 = yf.download(ticker2, start=start, end=end)
 
     df1 = df1.rename(columns={'Adj Close': 'Adj Close', 'Close': 'Close', 'High': 'High', 'Low': 'Low', 'Open': 'Open', 'Volume': 'Volume'})
-
     df2 = df2.rename(columns={'Adj Close': 'Adj Close', 'Close': 'Close', 'High': 'High', 'Low': 'Low', 'Open': 'Open', 'Volume': 'Volume'})
     return df1, df2
 
@@ -25,27 +23,23 @@ def update_plot(data, ticker, sync_axis=None):
         print("Data is empty, no plot will be generated.")
         return figure()
 
-    # Debugging: Print column names to verify structure
     print(f"Columns in the DataFrame: {data.columns}")
 
-    # Extracting columns for the specific ticker
     close_col = ('Close', ticker)
     open_col = ('Open', ticker)
     high_col = ('High', ticker)
     low_col = ('Low', ticker)
 
-    # Ensure the required columns exist
     if not {close_col, open_col, high_col, low_col}.issubset(data.columns):
         print(f"Data does not have the required columns for {ticker}.")
         print(f"Expected columns: {close_col}, {open_col}, {high_col}, {low_col}")
         return figure()
 
-    # Compute gain and loss masks
     gain = data[close_col] > data[open_col]
     loss = ~gain
-    width = 12 * 60 * 60 * 1000  # half day in ms
+    width = 12 * 60 * 60 * 1000
 
-    # Create figure with optional synced x-axis
+    # Create figure
     if sync_axis is not None:
         p = figure(x_axis_type="datetime", tools="pan,wheel_zoom,box_zoom,reset,save", width=1000, x_range=sync_axis)
     else:
@@ -54,7 +48,7 @@ def update_plot(data, ticker, sync_axis=None):
     p.xaxis.major_label_orientation = math.pi / 4
     p.grid.grid_line_alpha = 0.3
 
-    # Plot the data with legend_label to enable legend
+    # Plot the data
     p.segment(data.index, data[high_col], data.index, data[low_col], color="black", legend_label="High-Low")
     p.vbar(data.index[gain], width, data[open_col][gain], data[close_col][gain], fill_color="#00ff00", line_color="#00ff00", legend_label="Gain")
     p.vbar(data.index[loss], width, data[open_col][loss], data[close_col][loss], fill_color="#ff0000", line_color="#ff0000", legend_label="Loss")
