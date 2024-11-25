@@ -54,9 +54,11 @@ Simple dashboard to visualize data for 2 companies (Tickers -> shortcut for comp
     - 30 day average of the closing price
     - 100 day average of the closing price
     - Linear Regression Line
-5. Select to show legend
+5. Select checkbox to show legend
 6. Apply changes by clicking on "Apply"
 7. Play with dashboard!
+![image](https://github.com/user-attachments/assets/b1cd63f3-89bc-4920-8b6a-6e2a20ecb3c4)
+
 
 ## Stock prediction
 
@@ -73,3 +75,6 @@ Simple dashboard to visualize data for 2 companies (Tickers -> shortcut for comp
     - Make prediction on testing data (Predict the selected amount of prediction days and compare)
     - Plot test prediction
     - Predict next days data (prediction on new data)
+    - Example:
+![image](https://github.com/user-attachments/assets/5e0e972c-a836-4a78-be0a-eab7cd351eec)
+
