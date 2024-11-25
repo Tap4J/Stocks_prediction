@@ -18,30 +18,45 @@ Dashboard + stock prediction for financial data
     ```sh
     pip install -r requirements.txt
     ```
-**Run Jupyter Lab with the Notebook and Data**
+**Run Python file with prediction**
 
-To run the Jupyter Notebook with all the data in the GitHub repository, follow these steps:
+To run the Python file follow these steps:
 
-1. Ensure you are still in the project directory.
-2. Start Jupyter Lab:
+1. Ensure you are in the project directory running a virtual environment with installed libraries.
+2. Open your command prompt and type:
 
     ```sh
-    jupyter lab
+    python stock_prediction.py
     ```
-3. A new tab will open in your default web browser, displaying the Jupyter Lab interface.
-4. In Jupyter Lab, navigate to the directory where the notebook file (`.ipynb`) is located.
-5. Open the notebook file to begin working with it.
+3. After your program finishes training, a new pop will open with predicted data for "Meta"
+4. If you wish to change the company, open file in your project directory and change the variables "company, start, end"
+5. Adjust other attributes if you wish to
 
+**Run Dashboard**
+
+To run the Dashboard follow these steps:
+
+1. Ensure you are in the project directory running a virtual environment with installed libraries.
+2. Open your command prompt and type:
+
+    ```sh
+    bokeh serve --show dashboard.py
+    ```
+3. This will automatically open a new browser window with a running dashboard
 
 ## Dashboard
 
-Simple dashboard to visualize data for 2 companies (Tickers -> shortcut for company)   (TBD List of popular tickers!)
+Simple dashboard to visualize data for 2 companies (Tickers -> shortcut for company)
 
-1. Select Ticker from the list and input (example values already added)
+1. Select Ticker from the list of "Available tickers" and input them into field (example values already added)
 2. Select dates (example values already added)
-3. Select from multichoice indicator (multiple-choice) // TBD fixing 100SMA
-4. Load data
-5. Play with dashboard!
+3. Toggle indicator (multiple-choice)
+    - 30 day average of the closing price
+    - 100 day average of the closing price
+    - Linear Regression Line
+5. Select to show legend
+6. Apply changes by clicking on "Apply"
+7. Play with dashboard!
 
 ## Stock prediction
 
